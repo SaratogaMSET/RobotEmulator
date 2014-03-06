@@ -34,14 +34,16 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.DirectoryChooserBuilder;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javassist.CannotCompileException;
+import javassist.ClassPool;
+import javassist.Loader;
+import javassist.NotFoundException;
 import org.apache.commons.io.FileUtils;
 
 import javax.tools.*;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 import java.util.List;
 
@@ -157,50 +159,19 @@ public class RobotEmulator extends Application {
 
     private void startRobotEmulator(Stage stage, File codeDirectory) {
         try {
-            File externalSources = new File("externalSources");
-            FileUtils.deleteDirectory(externalSources);
-            FileUtils.copyDirectory(new File(codeDirectory.getAbsolutePath() + java.io.File.separator + "src" + java.io.File.separator), externalSources);
-            File sources = new File("sources" + System.currentTimeMillis());
-            sources.createNewFile();
-            sources.deleteOnExit();
-            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dir", "/s", "/B", "*.java");
-            pb.redirectOutput(sources);
-            Process p = pb.start();
-            try {
-                p.waitFor();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Scanner sourceScanner = new Scanner(sources);
-            ArrayList<JavaFileObject> filesToCompile = new ArrayList<>();
-            while (sourceScanner.hasNextLine())
-                filesToCompile.add(new JavaSourceFromFile(new File(sourceScanner.nextLine())));
-            sourceScanner.close();
-            JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-
-            List<String> optionList = new ArrayList<>();
-            optionList.addAll(Arrays.asList("-classpath", System.getProperty("java.class.path")));
-            StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-            File outputLocation = new File("externalBuild");
-            outputLocation.mkdir();
-            outputLocation.deleteOnExit();
-            fileManager.setLocation(StandardLocation.CLASS_OUTPUT,
-                    Arrays.asList(outputLocation));
-            JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, null, optionList, null, filesToCompile);
-            int compilationResult = task.call() ? 0 : 1;
+            File sources = copyFiles(codeDirectory);
+            ArrayList<JavaFileObject> filesToCompile = getJavaFileObjects(sources);
+            int compilationResult = compileFiles(filesToCompile);
             if (compilationResult == 0) {
                 String mainFilePath = getMainFilePath(codeDirectory);
                 String mainFile = mainFilePath.substring(SRC_PREFIX.length(), mainFilePath.lastIndexOf('.')).replace(File.separator, ".");
                 try {
-                    URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{outputLocation.toURI().toURL()});
-                    Class<RobotBase> cls = (Class<RobotBase>) Class.forName(mainFile, true, classLoader);
-                    File file = new File("res" + File.separator + "RobotEmulator.fxml");
-                    final Parent parent = FXMLLoader.load(file.toURI().toURL());
-                    Scene scene = new Scene(parent);
-                    scene.getStylesheets().add("res/stylesheet.css");
-                    stage.setScene(scene);
-                    setBorderStyle(parent);
-                    initGui(parent);
+                    fixMethods();
+//                    URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{outputLocation.toURI().toURL()});
+//                    Class<RobotBase> cls = (Class<RobotBase>) Class.forName(mainFile, true, ClassPool.getDefault().getClassLoader());
+                    Class<RobotBase> cls = loadClass(mainFile);
+//                    Class<RobotBase> cls = (Class<RobotBase>) Class.forName(mainFile, true, classLoader);
+                    initWindow(stage);
                     final RobotBase instance = cls.newInstance(); // Should print "world".
                     new Thread(new Runnable() {
                         @Override
@@ -217,8 +188,6 @@ public class RobotEmulator extends Application {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
                 }
             } else {
                 DialogFXBuilder.create().message("Compilation failed.").type(DialogFX.Type.ERROR).build().showDialog();
@@ -228,12 +197,110 @@ public class RobotEmulator extends Application {
         }
     }
 
+    private void fixMethods() {
+        String body = "{return new java.io.DataInputStream(new java.io.ByteArrayInputStream(\"\".getBytes()));}";
+        try {
+            ClassPool.getDefault().getMethod("com.sun.squawk.microedition.io.FileConnection", "openDataInputStream").setBody(body);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Class<RobotBase> loadClass(String mainFile) {
+        Class<RobotBase> cls = null;
+        try {
+            Loader loader = new Loader();
+//            ClassPool.getDefault().
+            ClassPool aDefault = ClassPool.getDefault();
+            loader.setClassPool(aDefault);
+//            cls = (Class<RobotBase>) loader.loadClass(mainFile);
+//            cls = ClassPool.getDefault().get(mainFile).toClass();
+            cls = (Class<RobotBase>) ClassPool.getDefault().getClassLoader().loadClass(mainFile);
+//        } catch (NotFoundException e) {
+//            e.printStackTrace();
+//        } catch (CannotCompileException e) {
+//            e.printStackTrace();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return cls;
+    }
+
+    private void initWindow(Stage stage) throws IOException {
+        File file = new File("res" + File.separator + "RobotEmulator.fxml");
+        final Parent parent = FXMLLoader.load(file.toURI().toURL());
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add("res/stylesheet.css");
+        stage.setScene(scene);
+        setBorderStyle(parent);
+        initGui(parent);
+    }
+
+    private ArrayList<JavaFileObject> getJavaFileObjects(File sources) throws IOException {
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dir", "/s", "/B", "*.java");
+        pb.redirectOutput(sources);
+        Process p = pb.start();
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Scanner sourceScanner = new Scanner(sources);
+        ArrayList<JavaFileObject> filesToCompile = new ArrayList<>();
+        HashSet<String> set = new HashSet<>();
+        while (sourceScanner.hasNextLine()) {
+            String pathname = sourceScanner.nextLine();
+            filesToCompile.add(new JavaSourceFromFile(new File(pathname)));
+            set.add(pathname.substring(0, pathname.lastIndexOf(File.separator)));
+        }
+        sourceScanner.close();
+        for (String path : set) {
+            try {
+                ClassPool.getDefault().insertClassPath(path + File.separator);
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return filesToCompile;
+    }
+
+    private File copyFiles(File codeDirectory) throws IOException {
+        File externalSources = new File("externalSources");
+        FileUtils.deleteDirectory(externalSources);
+        FileUtils.copyDirectory(new File(codeDirectory.getAbsolutePath() + File.separator + "src" + File.separator), externalSources);
+        File sources = new File("sources" + System.currentTimeMillis());
+        sources.createNewFile();
+        sources.deleteOnExit();
+        return sources;
+    }
+
+    private int compileFiles(ArrayList<JavaFileObject> filesToCompile) throws IOException {
+        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+        List<String> optionList = new ArrayList<>();
+        optionList.addAll(Arrays.asList("-classpath", System.getProperty("java.class.path")));
+        StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
+        File outputLocation = new File("externalBuild");
+        outputLocation.mkdir();
+        outputLocation.deleteOnExit();
+        fileManager.setLocation(StandardLocation.CLASS_OUTPUT,
+                Arrays.asList(outputLocation));
+        JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, null, optionList, null, filesToCompile);
+        return task.call() ? 0 : 1;
+    }
+
     public static void showErrorDialog(Throwable t) {
-        StringWriter sw = new StringWriter();
+        final StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         t.printStackTrace(pw);
-        Stage stage = RobotEmulator.getInstance().getStage();
-        DialogFXBuilder.create().message(sw.toString()).type(DialogFX.Type.ERROR).build().showDialog(stage.getX() + stage.getWidth() / 2, stage.getY() + stage.getHeight() / 2);
+        final Stage stage = RobotEmulator.getInstance().getStage();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                DialogFXBuilder.create().message(sw.toString()).type(DialogFX.Type.ERROR).build().showDialog(stage.getX() + stage.getWidth() / 2, stage.getY() + stage.getHeight() / 2);
+            }
+        });
     }
 
     private Stage getStage() {
@@ -279,26 +346,32 @@ public class RobotEmulator extends Application {
                 }
             }
         });
-        ((RadioButton) parent.lookup("#teleopMode")).setOnAction(new EventHandler<ActionEvent>() {
+        final RadioButton teleopModeButton = (RadioButton) parent.lookup("#teleopMode");
+        teleopModeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                robotMode = RobotMode.TELEOP;
+                if (teleopModeButton.isSelected())
+                    robotMode = RobotMode.TELEOP;
                 disabledButton.setSelected(true);
                 robotEnabled = false;
             }
         });
-        ((RadioButton) parent.lookup("#autonomousMode")).setOnAction(new EventHandler<ActionEvent>() {
+        final RadioButton autonomousModeButton = (RadioButton) parent.lookup("#autonomousMode");
+        autonomousModeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                robotMode = RobotMode.AUTONOMOUS;
+                if (autonomousModeButton.isSelected())
+                    robotMode = RobotMode.AUTONOMOUS;
                 disabledButton.setSelected(true);
                 robotEnabled = false;
             }
         });
-        ((RadioButton) parent.lookup("#testMode")).setOnAction(new EventHandler<ActionEvent>() {
+        final RadioButton testModeButton = (RadioButton) parent.lookup("#testMode");
+        testModeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                robotMode = RobotMode.TEST;
+                if (testModeButton.isSelected())
+                    robotMode = RobotMode.TEST;
                 disabledButton.setSelected(true);
                 robotEnabled = false;
             }

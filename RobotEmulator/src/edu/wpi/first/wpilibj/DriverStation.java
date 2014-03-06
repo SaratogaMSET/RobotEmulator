@@ -612,7 +612,7 @@ public class DriverStation implements IInputOutput {
      * @return True if the robot is competing on a field being controlled by a Field Management System
      */
     public boolean isFMSAttached() {
-        return (m_controlData.control & FRCCommonControlData.FMS_ATTATCHED) > 0;
+        return (m_controlData.control.get() & FRCCommonControlData.FMS_ATTATCHED) > 0;
     }
 
     /**

@@ -10,19 +10,20 @@ package edu.wpi.first.wpilibj.communication;
 import com.sun.cldc.jna.Structure;
 import org._649mset.RobotEmulator;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Structure for data exchanged between the robot and the driver station.
  */
 public final class FRCCommonControlData extends Structure {
 
-    public static final short RESET_BIT = 0x80;
-    public static final short ESTOP_BIT = 0x40;
-    public static final short ENABLED_BIT = 0x20;
-    public static final short AUTONOMOUS_BIT = 0x10;
-    public static final short FMS_ATTATCHED = 0x08;
-    public static final short RESYNCH = 0x04;
-    public static final short TEST_MODE_BIT = 0x02;
-    public static final short CHECK_VERSIONS_BIT = 0x01;
+    public static final byte ESTOP_BIT = 0x40;
+    public static final byte ENABLED_BIT = 0x20;
+    public static final byte AUTONOMOUS_BIT = 0x10;
+    public static final byte FMS_ATTATCHED = 0x08;
+    public static final byte RESYNCH = 0x04;
+    public static final byte TEST_MODE_BIT = 0x02;
+    public static final byte CHECK_VERSIONS_BIT = 0x01;
 
     /**
      * The index of the packet
@@ -31,7 +32,7 @@ public final class FRCCommonControlData extends Structure {
     /**
      * The control mode e.g. Autonomous, E-stop, isEnabled ...
      */
-    public /*UINT8*/ short control;
+    public AtomicInteger/*UINT8*/ control;
     // { reset, notEStop, isEnabled, isAutonomousMode, fmsAttached, resync, cRIOChkSum, fpgaChkSum }
 
     /**
@@ -40,7 +41,15 @@ public final class FRCCommonControlData extends Structure {
      * @return true if the robot is isEnabled
      */
     public boolean isEnabled() {
-        return (control & ENABLED_BIT) == ENABLED_BIT;
+        synchronized (this) {
+            final byte tempControl = (byte) control.get();
+            final byte tempEnabled = ENABLED_BIT;
+            boolean b = (tempControl& tempEnabled) == tempEnabled;
+            if (!b) {
+            }
+
+            return b;
+        }
     }
 
     /**
@@ -49,7 +58,7 @@ public final class FRCCommonControlData extends Structure {
      * @return true if the robot is in test mode
      */
     public boolean isTestMode() {
-        return (control & TEST_MODE_BIT) == TEST_MODE_BIT;
+        return (control.get() & TEST_MODE_BIT) == TEST_MODE_BIT;
     }
 
     /**
@@ -58,7 +67,7 @@ public final class FRCCommonControlData extends Structure {
      * @return true if the robot is in isAutonomousMode
      */
     public boolean isAutonomousMode() {
-        return (control & AUTONOMOUS_BIT) == AUTONOMOUS_BIT;
+        return (control.get() & AUTONOMOUS_BIT) == AUTONOMOUS_BIT;
     }
 
     /**
@@ -150,17 +159,17 @@ public final class FRCCommonControlData extends Structure {
 //        packetIndex = backingNativeMemory.getShort(0) & 0xFFFF;
         switch (RobotEmulator.getInstance().getRobotMode()) {
             case TELEOP:
-                control = 0;
+                control = new AtomicInteger(0);
                 break;
             case AUTONOMOUS:
-                control = AUTONOMOUS_BIT;
+                control = new AtomicInteger(AUTONOMOUS_BIT);
                 break;
             case TEST:
-                control = TEST_MODE_BIT;
+                control = new AtomicInteger(TEST_MODE_BIT);
                 break;
         }
         if (RobotEmulator.getInstance().isRobotEnabled())
-            control |= ENABLED_BIT;
+            control.set(control.get() | ENABLED_BIT);
 //
         dsDigitalIn = RobotEmulator.getInstance().getDSDigitalIn();
         teamID = RobotEmulator.getInstance().getTeamId();
