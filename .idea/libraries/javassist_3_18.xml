@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="javassist-3.18">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Desktop/Development/libraries/javassist-3.18.0-GA" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$USER_HOME$/Desktop/Development/libraries/javassist-3.18.0-GA/html" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/Development/libraries/javassist-3.18.0-GA/src/main" />
+      <root url="file://$USER_HOME$/Desktop/Development/libraries/javassist-3.18.0-GA" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Desktop/Development/libraries/javassist-3.18.0-GA" recursive="false" />
+  </library>
+</component>
