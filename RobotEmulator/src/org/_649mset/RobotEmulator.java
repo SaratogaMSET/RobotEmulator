@@ -36,7 +36,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
-import javassist.Loader;
 import javassist.NotFoundException;
 import org.apache.commons.io.FileUtils;
 
@@ -44,6 +43,8 @@ import javax.tools.*;
 import java.awt.*;
 import java.io.*;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.*;
 import java.util.List;
 
@@ -76,6 +77,7 @@ public class RobotEmulator extends Application {
     private HashMap<Relay, Text> relaysMap = new HashMap<>();
     private Parent parent;
     private Stage stage;
+    public static final File OUTPUT_LOCATION = new File("externalBuild");
 
     public static void main(String[] args) {
         launch(args);
@@ -167,10 +169,7 @@ public class RobotEmulator extends Application {
                 String mainFile = mainFilePath.substring(SRC_PREFIX.length(), mainFilePath.lastIndexOf('.')).replace(File.separator, ".");
                 try {
                     fixMethods();
-//                    URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{outputLocation.toURI().toURL()});
-//                    Class<RobotBase> cls = (Class<RobotBase>) Class.forName(mainFile, true, ClassPool.getDefault().getClassLoader());
                     Class<RobotBase> cls = loadClass(mainFile);
-//                    Class<RobotBase> cls = (Class<RobotBase>) Class.forName(mainFile, true, classLoader);
                     initWindow(stage);
                     final RobotBase instance = cls.newInstance(); // Should print "world".
                     new Thread(new Runnable() {
@@ -211,17 +210,9 @@ public class RobotEmulator extends Application {
     private Class<RobotBase> loadClass(String mainFile) {
         Class<RobotBase> cls = null;
         try {
-            Loader loader = new Loader();
-//            ClassPool.getDefault().
-            ClassPool aDefault = ClassPool.getDefault();
-            loader.setClassPool(aDefault);
-//            cls = (Class<RobotBase>) loader.loadClass(mainFile);
-//            cls = ClassPool.getDefault().get(mainFile).toClass();
-            cls = (Class<RobotBase>) ClassPool.getDefault().getClassLoader().loadClass(mainFile);
-//        } catch (NotFoundException e) {
-//            e.printStackTrace();
-//        } catch (CannotCompileException e) {
-//            e.printStackTrace();
+
+            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{OUTPUT_LOCATION.toURI().toURL()});
+            cls =  (Class<RobotBase>) Class.forName(mainFile, true, classLoader);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
@@ -281,11 +272,10 @@ public class RobotEmulator extends Application {
         List<String> optionList = new ArrayList<>();
         optionList.addAll(Arrays.asList("-classpath", System.getProperty("java.class.path")));
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-        File outputLocation = new File("externalBuild");
-        outputLocation.mkdir();
-        outputLocation.deleteOnExit();
+        OUTPUT_LOCATION.mkdir();
+        OUTPUT_LOCATION.deleteOnExit();
         fileManager.setLocation(StandardLocation.CLASS_OUTPUT,
-                Arrays.asList(outputLocation));
+                Arrays.asList(OUTPUT_LOCATION));
         JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, null, optionList, null, filesToCompile);
         return task.call() ? 0 : 1;
     }
