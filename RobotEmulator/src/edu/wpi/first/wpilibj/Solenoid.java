@@ -81,9 +81,8 @@ public class Solenoid extends SolenoidBase implements LiveWindowSendable {
      * @param on Turn the solenoid output off or on.
      */
     public void set(boolean on) {
-        byte value = (byte) (on ? 0xFF : 0x00);
-        byte mask = (byte) (1 << (m_channel - 1));
-
+        int value = (on ? 0xFF : 0x00);
+        int mask = (1 << (m_channel - 1));
         set(value, mask);
     }
 

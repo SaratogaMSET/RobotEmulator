@@ -212,7 +212,7 @@ public class RobotEmulator extends Application {
         try {
 
             URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{OUTPUT_LOCATION.toURI().toURL()});
-            cls =  (Class<RobotBase>) Class.forName(mainFile, true, classLoader);
+            cls = (Class<RobotBase>) Class.forName(mainFile, true, classLoader);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
@@ -786,8 +786,14 @@ public class RobotEmulator extends Application {
                 continue;
             HBox box = (HBox) children.get(addIndex);
             String textText = ((Text) box.lookup("#text")).getText();
-            if (solenoids[0] < Integer.parseInt(textText.substring(0, textText.indexOf(',')))) {
-                break;
+            try {
+                if (solenoids[0] < Integer.parseInt(textText.substring(0, textText.indexOf(',')))) {
+                    break;
+                }
+            } catch (Exception e) {
+                if (solenoids[0] < Integer.parseInt(textText)) {
+                    break;
+                }
             }
         }
         addToParent(hBox, children, addIndex);
@@ -863,6 +869,7 @@ public class RobotEmulator extends Application {
             text = "Forward";
         else
             text = "Reverse";
+
         solenoidMap.get(mask).setText(text);
     }
 
