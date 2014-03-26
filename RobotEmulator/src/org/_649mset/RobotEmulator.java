@@ -34,17 +34,14 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.DirectoryChooserBuilder;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.NotFoundException;
-import org.apache.commons.io.FileUtils;
 
 import javax.tools.*;
 import java.awt.*;
 import java.io.*;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 import java.util.List;
 
@@ -52,7 +49,7 @@ public class RobotEmulator extends Application {
     private static final int CANCELLED = -1;
     private static final int UNACCEPTABLE = 0;
     private static final int ACCEPTABLE = 1;
-    public static final String SRC_PREFIX = File.separator + "src" + File.separator;
+    public static final String SRC_PREFIX = "src";
     private static RobotEmulator instance;
     private boolean robotEnabled = false;
     private int teamId = 0;
@@ -77,10 +74,15 @@ public class RobotEmulator extends Application {
     private HashMap<Relay, Text> relaysMap = new HashMap<>();
     private Parent parent;
     private Stage stage;
-    public static final File OUTPUT_LOCATION = new File("externalBuild");
+    public static final String OUTPUT_LOCATION = "externalBuild";
+    private File outputDirectory;
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public RobotEmulator() {
+        super();
     }
 
     @Override
@@ -90,35 +92,30 @@ public class RobotEmulator extends Application {
         stage.setTitle("FRC Robot Emulator");
         VBox grid = new VBox();
         grid.setAlignment(Pos.CENTER);
-
         Scene scene = new Scene(grid);
+        stage.setScene(scene);
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
-                for (File file : new File(System.getProperty("user.dir")).listFiles()) {
-                    if (file.getName().matches("soources[0-9]+"))
-                        file.delete();
-                }
                 System.exit(0);
             }
         });
-        stage.setScene(scene);
-
-        Text scenetitle = new Text("Robot Emulator");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.getChildren().add(scenetitle);
-        Button fileChooserButton = new Button("Choose Base Folder");
+        final File jdkHomeFile = new File("jdkHome");
+        Text sceneTitle = new Text("Robot Emulator");
+        sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        grid.getChildren().add(sceneTitle);
+        final Button fileChooserButton = new Button("Choose Base Folder");
         fileChooserButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 DirectoryChooser chooser = DirectoryChooserBuilder.create().build();
-                File codeDirectory = new File(System.getProperty("user.home"));
+                Path codeDirectory = Paths.get(System.getProperty("user.home"));
                 int resultCode;
                 boolean first = true;
                 do {
                     try {
-                        chooser.setInitialDirectory(first ? codeDirectory : codeDirectory.getParentFile());
-                        codeDirectory = chooser.showDialog(stage);
+                        chooser.setInitialDirectory(first ? codeDirectory.toFile() : codeDirectory.getParent().toFile());
+                        codeDirectory = chooser.showDialog(stage).toPath();
                         resultCode = isAcceptableCodeFilePath(codeDirectory);
                         if (resultCode == UNACCEPTABLE) {
                             DialogFXBuilder builder = DialogFXBuilder.create();
@@ -132,7 +129,7 @@ public class RobotEmulator extends Application {
                         }
 
                     } catch (Exception | Error e) {
-                        resultCode = UNACCEPTABLE;
+                        resultCode = CANCELLED;
                         codeDirectory = null;
                     }
                     first = false;
@@ -142,36 +139,98 @@ public class RobotEmulator extends Application {
                 startRobotEmulator(stage, codeDirectory);
             }
         });
+        Button jdkChooserButton = new Button("Choose JDK Folder");
+        jdkChooserButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                getJdkHomeFromUser(stage, jdkHomeFile, fileChooserButton);
+            }
+        });
+        if (!setJdkHome(jdkHomeFile))
+            fileChooserButton.setDisable(true);
         grid.getChildren().add(fileChooserButton);
+        grid.getChildren().add(jdkChooserButton);
         grid.setSpacing(25);
         grid.setPadding(new Insets(25, 25, 25, 25));
         stage.show();
     }
 
-    private int isAcceptableCodeFilePath(File codeDirectory) {
+    private boolean setJdkHome(File jdkHomeFile) {
+        try {
+            System.setProperty("java.home", new Scanner(jdkHomeFile).nextLine());
+            return true;
+        } catch (Exception ignored) {
+        }
+        return false;
+    }
+
+    private boolean getJdkHomeFromUser(Stage stage, File prefs, Button codeButton) {
+        DirectoryChooser chooser = DirectoryChooserBuilder.create().build();
+        File codeDirectory = new File(System.getProperty("user.home"));
+        int resultCode;
+        boolean first = true;
+        do {
+            try {
+                chooser.setInitialDirectory(first ? codeDirectory : codeDirectory.getParentFile());
+                codeDirectory = chooser.showDialog(stage);
+                resultCode = isAcceptableJDKHome(codeDirectory);
+                if (resultCode == UNACCEPTABLE) {
+                    DialogFXBuilder builder = DialogFXBuilder.create();
+                    builder.type(DialogFX.Type.QUESTION);
+                    builder.message("Invalid directory selected.");
+                    ArrayList<String> buttons = new ArrayList<>();
+                    buttons.add("Cancel");
+                    buttons.add("Retry");
+                    builder.buttons(buttons, 1, 2);
+                    resultCode = builder.build().showDialog() == 1 ? UNACCEPTABLE : CANCELLED;
+                }
+
+            } catch (Exception | Error e) {
+                resultCode = CANCELLED;
+                codeDirectory = null;
+            }
+            first = false;
+        } while (resultCode == UNACCEPTABLE);
+        if (resultCode != CANCELLED) {
+            try {
+                prefs.delete();
+                FileWriter writer = new FileWriter(prefs);
+                writer.write(codeDirectory.getAbsolutePath());
+                writer.close();
+                codeButton.setDisable(false);
+                setJdkHome(prefs);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultCode != CANCELLED;
+    }
+
+    private int isAcceptableCodeFilePath(Path codeDirectory) {
         if (codeDirectory == null)
             return CANCELLED;
-        String mainFilePath = codeDirectory.getAbsolutePath() + getMainFilePath(codeDirectory);
-        return !(mainFilePath.equals(codeDirectory.getAbsolutePath())) && new File(mainFilePath).exists() ? ACCEPTABLE : UNACCEPTABLE;
+        Path mainFilePath = getMainFilePath(codeDirectory);
+        return Files.exists(mainFilePath) ? ACCEPTABLE : UNACCEPTABLE;
+    }
+
+    private int isAcceptableJDKHome(File codeDirectory) {
+        return codeDirectory.getName().startsWith("jdk") ? ACCEPTABLE : UNACCEPTABLE;
     }
 
     public static RobotEmulator getInstance() {
         return instance;
     }
 
-    private void startRobotEmulator(Stage stage, File codeDirectory) {
+    private void startRobotEmulator(Stage stage, Path codeDirectory) {
         try {
-            File sources = copyFiles(codeDirectory);
-            ArrayList<JavaFileObject> filesToCompile = getJavaFileObjects(sources);
-            int compilationResult = compileFiles(filesToCompile);
-            if (compilationResult == 0) {
-                String mainFilePath = getMainFilePath(codeDirectory);
-                String mainFile = mainFilePath.substring(SRC_PREFIX.length(), mainFilePath.lastIndexOf('.')).replace(File.separator, ".");
+            ArrayList<JavaFileObject> filesToCompile = copyFiles(codeDirectory);
+            if (compileFiles(filesToCompile)) {
+                Path mainFilePath = getMainFilePath(codeDirectory);
+                Path mainFile = codeDirectory.resolve(SRC_PREFIX).relativize(mainFilePath);
                 try {
-                    fixMethods();
-                    Class<RobotBase> cls = loadClass(mainFile);
+                    Class<RobotBase> cls = loadClass(mainFile.toString().replace(File.separator, "."));
                     initWindow(stage);
-                    final RobotBase instance = cls.newInstance(); // Should print "world".
+                    final RobotBase instance = cls.newInstance();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -183,9 +242,7 @@ public class RobotEmulator extends Application {
                             }
                         }
                     }).start();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             } else {
@@ -196,23 +253,12 @@ public class RobotEmulator extends Application {
         }
     }
 
-    private void fixMethods() {
-        String body = "{return new java.io.DataInputStream(new java.io.ByteArrayInputStream(\"\".getBytes()));}";
-        try {
-            ClassPool.getDefault().getMethod("com.sun.squawk.microedition.io.FileConnection", "openDataInputStream").setBody(body);
-        } catch (CannotCompileException e) {
-            e.printStackTrace();
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     private Class<RobotBase> loadClass(String mainFile) {
         Class<RobotBase> cls = null;
         try {
-
-            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{OUTPUT_LOCATION.toURI().toURL()});
-            cls = (Class<RobotBase>) Class.forName(mainFile, true, classLoader);
+            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{outputDirectory.toURI().toURL()}, getClass().getClassLoader());
+            cls = (Class<RobotBase>) classLoader.loadClass(mainFile.substring(0, mainFile.lastIndexOf('.')));
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
@@ -220,64 +266,90 @@ public class RobotEmulator extends Application {
     }
 
     private void initWindow(Stage stage) throws IOException {
-        File file = new File("res" + File.separator + "RobotEmulator.fxml");
-        final Parent parent = FXMLLoader.load(file.toURI().toURL());
+        String resourceUrl = "/res/RobotEmulator.fxml";
+        URL file = getClass().getResource(resourceUrl);
+        final Parent parent = FXMLLoader.load(file);
         Scene scene = new Scene(parent);
-        scene.getStylesheets().add("res/stylesheet.css");
         stage.setScene(scene);
         setBorderStyle(parent);
         initGui(parent);
     }
 
-    private ArrayList<JavaFileObject> getJavaFileObjects(File sources) throws IOException {
-        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dir", "/s", "/B", "*.java");
-        pb.redirectOutput(sources);
-        Process p = pb.start();
-        try {
-            p.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Scanner sourceScanner = new Scanner(sources);
-        ArrayList<JavaFileObject> filesToCompile = new ArrayList<>();
-        HashSet<String> set = new HashSet<>();
-        while (sourceScanner.hasNextLine()) {
-            String pathname = sourceScanner.nextLine();
-            filesToCompile.add(new JavaSourceFromFile(new File(pathname)));
-            set.add(pathname.substring(0, pathname.lastIndexOf(File.separator)));
-        }
-        sourceScanner.close();
-        for (String path : set) {
-            try {
-                ClassPool.getDefault().insertClassPath(path + File.separator);
-            } catch (NotFoundException e) {
-                e.printStackTrace();
+    private ArrayList<JavaFileObject> copyFiles(final Path codeDirectory) throws IOException {
+        final Path externalSources = Files.createTempDirectory("externalSources");
+        final ArrayList<JavaFileObject> javaFileObjects = new ArrayList<>();
+        Files.walkFileTree(codeDirectory, new FileVisitor<Path>() {
+            @Override
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                Path targetPath = externalSources.resolve(codeDirectory.relativize(dir));
+                if (!Files.exists(targetPath)) {
+                    Files.createDirectory(targetPath);
+                }
+                return FileVisitResult.CONTINUE;
             }
-        }
-        return filesToCompile;
+
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                if (file.toString().toLowerCase().endsWith(".java"))
+                    javaFileObjects.add(new JavaSourceFromPath(Files.copy(file, externalSources.resolve(codeDirectory.relativize(file)), StandardCopyOption.REPLACE_EXISTING)));
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                return FileVisitResult.CONTINUE;
+            }
+        });
+        return javaFileObjects;
     }
 
-    private File copyFiles(File codeDirectory) throws IOException {
-        File externalSources = new File("externalSources");
-        FileUtils.deleteDirectory(externalSources);
-        FileUtils.copyDirectory(new File(codeDirectory.getAbsolutePath() + File.separator + "src" + File.separator), externalSources);
-        File sources = new File("sources" + System.currentTimeMillis());
-        sources.createNewFile();
-        sources.deleteOnExit();
-        return sources;
-    }
-
-    private int compileFiles(ArrayList<JavaFileObject> filesToCompile) throws IOException {
+    private boolean compileFiles(ArrayList<JavaFileObject> filesToCompile) throws IOException {
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+
         List<String> optionList = new ArrayList<>();
         optionList.addAll(Arrays.asList("-classpath", System.getProperty("java.class.path")));
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
-        OUTPUT_LOCATION.mkdir();
-        OUTPUT_LOCATION.deleteOnExit();
+        outputDirectory = Files.createTempDirectory(Paths.get(""), OUTPUT_LOCATION).toFile();
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                try {
+                    Files.walkFileTree(Paths.get(outputDirectory.getAbsolutePath()), new FileVisitor<Path>() {
+                        @Override
+                        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                            return FileVisitResult.CONTINUE;
+                        }
+
+                        @Override
+                        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                            file.toFile().delete();
+                            return FileVisitResult.CONTINUE;
+                        }
+
+                        @Override
+                        public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+                            return FileVisitResult.CONTINUE;
+                        }
+
+                        @Override
+                        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                            dir.toFile().delete();
+                            return FileVisitResult.CONTINUE;
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         fileManager.setLocation(StandardLocation.CLASS_OUTPUT,
-                Arrays.asList(OUTPUT_LOCATION));
+                Arrays.asList(outputDirectory));
         JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, null, optionList, null, filesToCompile);
-        return task.call() ? 0 : 1;
+        return task.call();
     }
 
     public static void showErrorDialog(Throwable t) {
@@ -470,35 +542,41 @@ public class RobotEmulator extends Application {
         });
     }
 
-    private String getMainFilePath(File codeDirectory) {
-        File manifestFile = new File(codeDirectory.getAbsoluteFile() + java.io.File.separator + "resources" + java.io.File.separator + "META-INF" + java.io.File.separator + "MANIFEST.MF");
-        if (!manifestFile.exists()) {
-            return "";
+    private Path getMainFilePath(Path codeDirectory) {
+        Path manifestFile = codeDirectory.resolve("resources" + java.io.File.separator + "META-INF" + java.io.File.separator + "MANIFEST.MF");
+        if (!Files.exists(manifestFile)) {
+            System.out.println("manifest does not exist");
+            return null;
         }
-        Scanner in = null;
+        BufferedReader in = null;
         try {
-            in = new Scanner(manifestFile);
-        } catch (FileNotFoundException e) {
+            in = new BufferedReader(new InputStreamReader(Files.newInputStream(manifestFile)));
+        } catch (IOException e) {
             e.printStackTrace();
         }
         String mainFilePath = "";
         if (in != null) {
-            while (in.hasNextLine()) {
-                String line = in.nextLine();
-                if (line.startsWith("MIDlet-1: ")) {
-                    mainFilePath = line.substring(line.indexOf(',') + 4);
-                    break;
+            try {
+                while (in.ready()) {
+                    String line = in.readLine();
+                    if (line.startsWith("MIDlet-1: ")) {
+                        mainFilePath = line.substring(line.indexOf(',') + 4);
+                        break;
+                    }
                 }
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            in.close();
         }
-        return SRC_PREFIX + mainFilePath.replace(".", File.separator) + ".java";
+        return codeDirectory.toAbsolutePath().resolve(Paths.get(SRC_PREFIX + File.separator + mainFilePath.replace(".", File.separator) + ".java"));
     }
 
     public RobotMode getRobotMode() {
         return robotMode;
     }
 
+    //TODO set up analog and digital ins
     public short getDSDigitalIn() {
         return 0;
     }
@@ -895,18 +973,18 @@ public class RobotEmulator extends Application {
         }
     }
 
-    private static class JavaSourceFromFile extends SimpleJavaFileObject {
+    private static class JavaSourceFromPath extends SimpleJavaFileObject {
         String code;
 
-        JavaSourceFromFile(File file) {
-            super(URI.create("string:///" + file.getName().substring(0, file.getName().indexOf('.')) + Kind.SOURCE.extension), Kind.SOURCE);
+        JavaSourceFromPath(Path path) {
+            super(path.toUri(), Kind.SOURCE);
             code = "";
             try {
-                Scanner in = new Scanner(file);
-                while (in.hasNextLine())
-                    code += in.nextLine() + "\n";
+                BufferedReader in = new BufferedReader(new InputStreamReader(Files.newInputStream(path)));
+                while (in.ready())
+                    code += in.readLine() + "\n";
                 in.close();
-            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

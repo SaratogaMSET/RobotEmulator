@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="RobotEmulator">
+    <output-path>$PROJECT_DIR$/out/artifacts/RobotEmulator</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="org._649mset.RobotEmulator" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="FRC Robot Emulator" />
+        <option name="vendor" value="Team 649" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="RobotEmulator.jar">
+        <element id="module-output" name="RobotEmulator" />
+        <element id="module-output" name="Dialog" />
+        <element id="extracted-dir" path="$USER_HOME$/sunspotfrcsdk/lib/squawk.jar" path-in-jar="/" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="extracted-dir" path="$USER_HOME$/sunspotfrcsdk/lib/networktables-crio.jar" path-in-jar="/" />
+      </element>
+    </root>
+  </artifact>
+</component>
