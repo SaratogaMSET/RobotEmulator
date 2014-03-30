@@ -108,7 +108,7 @@ public class Connector {
 
         @Override
         public long fileSize() throws IOException {
-            return file.getTotalSpace();
+            return file.length();
         }
 
         @Override
