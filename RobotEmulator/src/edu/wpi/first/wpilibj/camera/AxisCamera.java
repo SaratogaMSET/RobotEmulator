@@ -278,12 +278,12 @@ public class AxisCamera implements ISensor {
      * @param IPAddress
      */
     AxisCamera(String IPAddress) {
-        Pointer ptr = Pointer.createStringBuffer(IPAddress);
+//        Pointer ptr = Pointer.createStringBuffer(IPAddress);
 //        cameraStartFn.call1(ptr);
         RobotEmulator.getInstance().addAxisCamera(this);
     }
 
-    private static final TaskExecutor cameraTaskExecutor = new TaskExecutor("camera task executor");
+//    private static final TaskExecutor cameraTaskExecutor = new TaskExecutor("camera task executor");
 //    private static final BlockingFunction getImageFn = NativeLibrary.getDefaultInstance().getBlockingFunction("AxisCameraGetImage");
 
     static {
@@ -512,12 +512,12 @@ public class AxisCamera implements ISensor {
     }
     // private static final Function deleteInstanceFn = NativeLibrary.getDefaultInstance().getFunction("AxisCameraDeleteInstance");
 
-    static {
-        VM.addShutdownHook(new Thread() {
-
-            public void run() {
-//                deleteInstanceFn.call0();
-            }
-        });
-    }
+//    static {
+//        VM.addShutdownHook(new Thread() {
+//
+//            public void run() {
+////                deleteInstanceFn.call0();
+//            }
+//        });
+//    }
 }
