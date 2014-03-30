@@ -7,13 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dde57e27-158d-4bea-80ea-4a656a2476a0" name="Default" comment="Made work in an external jar file, removed unnecessary dependencies">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/RobotEmulator.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="C:\Users\Alex\Documents\code\RobotEmulator\.idea\libraries\javassist_3_18.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Alex\Documents\code\RobotEmulator\res\RobotEmulator.fxml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RobotEmulator/RobotEmulator1.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/camera/AxisCamera.java" afterPath="$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/camera/AxisCamera.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RobotEmulator/RobotEmulator.iml" afterPath="$PROJECT_DIR$/RobotEmulator/RobotEmulator.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RobotEmulator/src/org/_649mset/RobotEmulator.java" afterPath="$PROJECT_DIR$/RobotEmulator/src/org/_649mset/RobotEmulator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RobotEmulator.iws" />
@@ -32,7 +30,8 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -68,26 +67,9 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/ClassLoader.java" line="889" class="java.lang.ClassLoader" package="java.lang">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="name.contains(&quot;ClawPivotSubsystem&quot;)&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-    </line_breakpoints>
-    <breakpoint_rules />
-    <ui_properties />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true" />
+    <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -98,7 +80,8 @@
       <file leaf-file-name="SolenoidBase.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/SolenoidBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="73" selection-start="2410" selection-end="2410" vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="1700">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="1700">
+              <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -107,7 +90,8 @@
       <file leaf-file-name="Solenoid.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Solenoid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="41" selection-start="3099" selection-end="3099" vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="2737">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="2737">
+              <caret line="85" column="25" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -116,49 +100,42 @@
       <file leaf-file-name="Connector.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotEmulator/src/javax/microedition/io/Connector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="124" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="4097">
+            <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="4216">
+              <caret line="49" column="107" selection-start-line="49" selection-start-column="107" selection-end-line="49" selection-end-column="107" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RobotEmulator.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RobotEmulator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotEmulator/src/org/_649mset/RobotEmulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="762" column="84" selection-start="31850" selection-end="31850" vertical-scroll-proportion="0.6113117" vertical-offset="11239" max-vertical-offset="15708">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1661" max-vertical-offset="16405">
+              <caret line="116" column="101" selection-start-line="116" selection-start-column="101" selection-end-line="116" selection-end-column="101" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3390#3559#0" expanded="true" />
-                <element signature="e#3548#3549#0" expanded="true" />
-                <element signature="e#9419#9835#0" expanded="true" />
-                <element signature="e#9812#9813#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Object.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/Object.java">
+      <file leaf-file-name="AnalogPotentiometer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/AnalogPotentiometer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="382" column="29" selection-start="17643" selection-end="17643" vertical-scroll-proportion="0.0" vertical-offset="5938" max-vertical-offset="9129">
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2567">
+              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReferenceQueue.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/ref/ReferenceQueue.java">
+      <file leaf-file-name="AxisCamera.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/camera/AxisCamera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="0" selection-start="4326" selection-end="4326" vertical-scroll-proportion="0.0" vertical-offset="1832" max-vertical-offset="2329">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Disposer.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/jre/lib/jfxrt.jar!/com/sun/glass/utils/Disposer.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="16" selection-start="742" selection-end="742" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+            <state vertical-scroll-proportion="0.61824954" vertical-offset="4207" max-vertical-offset="8568">
+              <caret line="292" column="7" selection-start-line="292" selection-start-column="7" selection-end-line="292" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -167,7 +144,8 @@
       <file leaf-file-name="DriverStation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/DriverStation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="215" column="78" selection-start="7040" selection-end="7040" vertical-scroll-proportion="0.0" vertical-offset="3184" max-vertical-offset="11271">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3638" max-vertical-offset="11764">
+              <caret line="215" column="63" selection-start-line="215" selection-start-column="63" selection-end-line="215" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -176,7 +154,8 @@
       <file leaf-file-name="Compressor.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Compressor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="3893">
+            <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="4063">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -197,6 +176,11 @@
       </map>
     </option>
   </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -207,14 +191,15 @@
         <option value="$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Solenoid.java" />
         <option value="$USER_HOME$/Desktop/Robotics/Code/649code2014/src/com/team649/frc2014/Display.java" />
         <option value="$PROJECT_DIR$/RobotEmulator/src/org/_649mset/RobotEmulator.java" />
+        <option value="$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/camera/AxisCamera.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1288" />
-    <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="x" value="-1289" />
+    <option name="y" value="-9" />
+    <option name="width" value="1298" />
+    <option name="height" value="1002" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -230,7 +215,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -241,57 +226,64 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RobotEmulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="options.lastSelected" value="project.propCompiler" />
-    <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
-    <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="FullScreen" value="false" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="133" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="132" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="133" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="810" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="229" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="224" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="227" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="528" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
-    <property name="extract.method.default.visibility" value="private" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="229" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="last_opened_file_path" value="$USER_HOME$/sunspotfrcsdk/lib/networktables-crio.jar!/" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="133" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="528" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="810" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="227" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="224" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RunManager" selected="Application.Default">
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <method />
-    </configuration>
     <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
       <module name="" />
       <setting name="path" value="" />
@@ -319,6 +311,7 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -333,6 +326,7 @@
       <ExternalSystemSettings>
         <option name="externalProjectPath" />
         <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -354,33 +348,6 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -434,6 +401,7 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="Default" type="Application" factoryName="Application">
@@ -530,7 +498,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1288" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-1289" y="-9" width="1298" height="1002" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -538,25 +506,25 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32873562" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37011495" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39885056" sideWeight="0.49919224" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30574712" sideWeight="0.50080776" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33793104" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31494254" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3139932" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912844" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3796446" sideWeight="0.66033256" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39770114" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30574712" sideWeight="0.49919224" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.196875" sideWeight="0.66033256" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3048919" sideWeight="0.49919224" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37011495" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39770114" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -586,7 +554,10 @@
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USERS">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
   </component>
@@ -635,318 +606,184 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/communication/FRCCommonControlData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="42" selection-start="2093" selection-end="2093" vertical-scroll-proportion="0.0" vertical-offset="671" max-vertical-offset="3791" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/io/j2me/file/Protocol.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="3978" selection-end="3978" vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="1530" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/IterativeRobot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="24" selection-start="4363" selection-end="4363" vertical-scroll-proportion="0.0" vertical-offset="1615" max-vertical-offset="5270" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/RobotBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="26" selection-start="4422" selection-end="4422" vertical-scroll-proportion="0.0" vertical-offset="2023" max-vertical-offset="4845">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/DriverStation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="614" column="43" selection-start="20195" selection-end="20195" vertical-scroll-proportion="0.0" vertical-offset="10438" max-vertical-offset="11764">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dialog/src/dialogfx/DialogFXBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2286" selection-end="2286" vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="1734" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dialog/src/dialogfx/DialogFX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0" vertical-offset="1054" max-vertical-offset="5610" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/AnalogPotentiometer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="91" selection-start="4479" selection-end="4479" vertical-scroll-proportion="0.0" vertical-offset="2210" max-vertical-offset="2805" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/org/_649mset/RobotEmulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="25" selection-start="6401" selection-end="6401" vertical-scroll-proportion="0.0" vertical-offset="2873" max-vertical-offset="14824">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3390#3559#0" expanded="true" />
-            <element signature="e#3548#3549#0" expanded="true" />
-            <element signature="e#9419#9835#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/io/j2me/file/Protocol.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="3978" selection-end="3978" vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="1530" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/IterativeRobot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="36" selection-start="3206" selection-end="3206" vertical-scroll-proportion="0.0" vertical-offset="1156" max-vertical-offset="5270" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dialog/src/dialogfx/DialogFXBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2286" selection-end="2286" vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="1734" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dialog/src/dialogfx/DialogFX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="53" selection-start="1567" selection-end="1567" vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="5151" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/platform/Platform.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1317" selection-end="1317" vertical-scroll-proportion="0.81386864" vertical-offset="64" max-vertical-offset="612" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/io/j2me/file/Protocol.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="3978" selection-end="3978" vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="1530" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dialog/src/dialogfx/DialogFX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.0" vertical-offset="574" max-vertical-offset="5151" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/io/ConnectionBaseAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="34" selection-start="841" selection-end="864" vertical-scroll-proportion="-13.6" vertical-offset="0" max-vertical-offset="1037" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/jre/lib/jfxrt.jar!/com/sun/glass/ui/win/WinApplication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="19" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1530" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/AnalogPotentiometer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="91" selection-start="4479" selection-end="4479" vertical-scroll-proportion="0.0" vertical-offset="1831" max-vertical-offset="2771" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/util/HashSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="19" selection-start="7984" selection-end="7984" vertical-scroll-proportion="0.33225283" vertical-offset="3059" max-vertical-offset="5015" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/javax/microedition/io/Connector.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="576" selection-end="1829" vertical-scroll-proportion="0.51476794" vertical-offset="28" max-vertical-offset="629" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/microedition/io/FileConnection.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="21" selection-start="181" selection-end="181" vertical-scroll-proportion="0.17894737" vertical-offset="0" max-vertical-offset="663" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/io/ConnectionBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="31" selection-start="178" selection-end="178" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../254-FRC-2013/src/com/team254/frc2013/Overkill.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4573" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../254-FRC-2013/src/com/team254/frc2013/subsystems/Hanger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="70" selection-start="673" selection-end="673" vertical-scroll-proportion="0.33203125" vertical-offset="34" max-vertical-offset="1904" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../254-FRC-2013/src/com/team254/lib/util/ConstantsBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="34" selection-start="1182" selection-end="1182" vertical-scroll-proportion="0.36523438" vertical-offset="306" max-vertical-offset="1717" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../254-FRC-2013/src/com/team254/frc2013/subsystems/Drive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="14" selection-start="4209" selection-end="4209" vertical-scroll-proportion="0.0" vertical-offset="1955" max-vertical-offset="3281" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/SolenoidBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="73" selection-start="2410" selection-end="2410" vertical-scroll-proportion="0.0" vertical-offset="786" max-vertical-offset="1581">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1700">
+          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Solenoid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="41" selection-start="3099" selection-end="3099" vertical-scroll-proportion="0.0" vertical-offset="1024" max-vertical-offset="2499">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/javax/tools/StandardJavaFileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="17" selection-start="4561" selection-end="4561" vertical-scroll-proportion="3.680374" vertical-offset="3" max-vertical-offset="3774" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/RobotBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="233" column="0" selection-start="7689" selection-end="7689" vertical-scroll-proportion="0.0" vertical-offset="3528" max-vertical-offset="4505">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Preferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="13" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.33268103" vertical-offset="238" max-vertical-offset="13583" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dialog/src/dialogfx/DialogFXBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="48" selection-start="2294" selection-end="2334" vertical-scroll-proportion="0.009398496" vertical-offset="1117" max-vertical-offset="1649" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/jre/lib/jfxrt.jar!/com/sun/javafx/tk/quantum/GlassViewEventHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="0" selection-start="5772" selection-end="5772" vertical-scroll-proportion="0.79518074" vertical-offset="1474" max-vertical-offset="1972" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2127" column="64" selection-start="90721" selection-end="90721" vertical-scroll-proportion="1.3035088" vertical-offset="34226" max-vertical-offset="53159">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="325" column="23" selection-start="10184" selection-end="10184" vertical-scroll-proportion="0.0" vertical-offset="5198" max-vertical-offset="5661">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/Robotics/Code/649code2014/src/com/team649/frc2014/Robot2014.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3791">
-          <folding>
-            <element signature="e#0#10684#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/Robotics/Code/649code2014/src/com/team649/frc2014/Display.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="85" selection-start="5849" selection-end="5849" vertical-scroll-proportion="0.85294116" vertical-offset="2125" max-vertical-offset="3774">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="414" column="97" selection-start="15841" selection-end="15841" vertical-scroll-proportion="0.81086516" vertical-offset="5666" max-vertical-offset="36975">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/Throwable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="0" selection-start="10282" selection-end="10282" vertical-scroll-proportion="0.31790745" vertical-offset="3667" max-vertical-offset="18020">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/communication/FRCCommonControlData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="32" selection-start="4552" selection-end="4552" vertical-scroll-proportion="0.36820924" vertical-offset="2384" max-vertical-offset="3638">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="2737">
+          <caret line="85" column="25" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RobotEmulator/src/javax/microedition/io/Connector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="124" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="4097">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Compressor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="3893">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/jre/lib/jfxrt.jar!/com/sun/javafx/css/SimpleSelector.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="11" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="281" max-vertical-offset="1003">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="727" column="40" selection-start="26982" selection-end="26982" vertical-scroll-proportion="0.1609658" vertical-offset="11650" max-vertical-offset="33898">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/ref/ReferenceQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="0" selection-start="4326" selection-end="4326" vertical-scroll-proportion="0.0" vertical-offset="1832" max-vertical-offset="2329">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/jre/lib/jfxrt.jar!/com/sun/glass/utils/Disposer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="16" selection-start="742" selection-end="742" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="382" column="29" selection-start="17643" selection-end="17643" vertical-scroll-proportion="0.0" vertical-offset="5938" max-vertical-offset="9129">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/IterativeRobot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="85" selection-start="8119" selection-end="8119" vertical-scroll-proportion="0.45421904" vertical-offset="2603" max-vertical-offset="5134">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/DriverStation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="78" selection-start="7040" selection-end="7040" vertical-scroll-proportion="0.0" vertical-offset="3184" max-vertical-offset="11271">
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="4216">
+          <caret line="49" column="107" selection-start-line="49" selection-start-column="107" selection-end-line="49" selection-end-column="107" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RobotEmulator/src/org/_649mset/RobotEmulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="762" column="84" selection-start="31850" selection-end="31850" vertical-scroll-proportion="0.6113117" vertical-offset="11239" max-vertical-offset="15708">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12682" max-vertical-offset="16405">
+          <caret line="782" column="26" selection-start-line="782" selection-start-column="26" selection-end-line="782" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3390#3559#0" expanded="true" />
-            <element signature="e#3548#3549#0" expanded="true" />
-            <element signature="e#9419#9835#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/DriverStation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3638" max-vertical-offset="11764">
+          <caret line="215" column="63" selection-start-line="215" selection-start-column="63" selection-end-line="215" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Compressor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="4063">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/io/ConnectionBaseAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.6" vertical-offset="0" max-vertical-offset="1037">
+          <caret line="21" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/javax/microedition/io/Connector.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51476794" vertical-offset="28" max-vertical-offset="629">
+          <caret line="17" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/microedition/io/FileConnection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17894737" vertical-offset="0" max-vertical-offset="663">
+          <caret line="6" column="21" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/sunspotfrcsdk/lib/squawk.jar!/com/sun/squawk/io/ConnectionBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="425">
+          <caret line="6" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/SolenoidBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="1700">
+          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Solenoid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="2737">
+          <caret line="85" column="25" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/RobotBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3528" max-vertical-offset="4505">
+          <caret line="233" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Preferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33268103" vertical-offset="238" max-vertical-offset="13583">
+          <caret line="40" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dialog/src/dialogfx/DialogFXBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.009398496" vertical-offset="1117" max-vertical-offset="1649">
+          <caret line="71" column="48" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/communication/FRCCommonControlData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36820924" vertical-offset="2384" max-vertical-offset="3638">
+          <caret line="159" column="32" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/javax/microedition/io/Connector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="4216">
+          <caret line="49" column="107" selection-start-line="49" selection-start-column="107" selection-end-line="49" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/Compressor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="4063">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/IterativeRobot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45421904" vertical-offset="2603" max-vertical-offset="5134">
+          <caret line="176" column="85" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/DriverStation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3638" max-vertical-offset="11764">
+          <caret line="215" column="63" selection-start-line="215" selection-start-column="63" selection-end-line="215" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/org/_649mset/RobotEmulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1661" max-vertical-offset="16405">
+          <caret line="116" column="101" selection-start-line="116" selection-start-column="101" selection-end-line="116" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/AnalogPotentiometer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2567">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RobotEmulator/src/edu/wpi/first/wpilibj/camera/AxisCamera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61824954" vertical-offset="4207" max-vertical-offset="8568">
+          <caret line="292" column="7" selection-start-line="292" selection-start-column="7" selection-end-line="292" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1014,6 +851,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
