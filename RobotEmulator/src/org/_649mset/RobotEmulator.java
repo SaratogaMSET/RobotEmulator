@@ -105,6 +105,7 @@ public class RobotEmulator extends Application {
         sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.getChildren().add(sceneTitle);
         final Button fileChooserButton = new Button("Choose Base Folder");
+
         fileChooserButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -116,17 +117,7 @@ public class RobotEmulator extends Application {
                     try {
                         chooser.setInitialDirectory(first ? codeDirectory.toFile() : codeDirectory.getParent().toFile());
                         codeDirectory = chooser.showDialog(stage).toPath();
-                        resultCode = isAcceptableCodeFilePath(codeDirectory);
-                        if (resultCode == UNACCEPTABLE) {
-                            DialogFXBuilder builder = DialogFXBuilder.create();
-                            builder.type(DialogFX.Type.QUESTION);
-                            builder.message("Invalid directory selected.");
-                            ArrayList<String> buttons = new ArrayList<>();
-                            buttons.add("Cancel");
-                            buttons.add("Retry");
-                            builder.buttons(buttons, 1, 2);
-                            resultCode = builder.build().showDialog() == 1 ? UNACCEPTABLE : CANCELLED;
-                        }
+                        resultCode = checkCodeDirectory(codeDirectory);
 
                     } catch (Exception | Error e) {
                         resultCode = CANCELLED;
@@ -146,13 +137,34 @@ public class RobotEmulator extends Application {
                 getJdkHomeFromUser(stage, jdkHomeFile, fileChooserButton);
             }
         });
-        if (!setJdkHome(jdkHomeFile))
-            fileChooserButton.setDisable(true);
         grid.getChildren().add(fileChooserButton);
         grid.getChildren().add(jdkChooserButton);
         grid.setSpacing(25);
         grid.setPadding(new Insets(25, 25, 25, 25));
         stage.show();
+        if (!setJdkHome(jdkHomeFile))
+            fileChooserButton.setDisable(true);
+        else if (getParameters().getUnnamed().size() > 0) {
+            Path codeDirectory = new File(getParameters().getUnnamed().get(0)).toPath();
+            if (checkCodeDirectory(codeDirectory) == ACCEPTABLE)
+                startRobotEmulator(stage, codeDirectory);
+        }
+    }
+
+    private int checkCodeDirectory(Path codeDirectory) {
+        int resultCode;
+        resultCode = isAcceptableCodeFilePath(codeDirectory);
+        if (resultCode == UNACCEPTABLE) {
+            DialogFXBuilder builder = DialogFXBuilder.create();
+            builder.type(DialogFX.Type.QUESTION);
+            builder.message("Invalid directory selected.");
+            ArrayList<String> buttons = new ArrayList<>();
+            buttons.add("Cancel");
+            buttons.add("Retry");
+            builder.buttons(buttons, 1, 2);
+            resultCode = builder.build().showDialog() == 1 ? UNACCEPTABLE : CANCELLED;
+        }
+        return resultCode;
     }
 
     private boolean setJdkHome(File jdkHomeFile) {
